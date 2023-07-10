@@ -1,7 +1,7 @@
-FROM php:latest
-
+FROM php:apache
+# php files to working directory
 COPY . /var/www/html
 
-EXPOSE 3000
-
-CMD["apache2-foreground"]
+EXPOSE 80
+# start Apache server
+CMD ["apache2ctl", "-D", "FOREGROUND"]
