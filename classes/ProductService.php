@@ -11,6 +11,7 @@ class ProductService
     public function getProduct(int $id): void
     {
         echo ("product $id");
-        $this->cacheService->saveToCache($id);
+
+        $this->cacheService->loadProductFromCache($id);
     }
 }

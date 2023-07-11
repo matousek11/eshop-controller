@@ -1,12 +1,16 @@
 <?php
+require_once("TextService.php");
+
 class FileService
 {
     private string $baseRoute;
     private string $fileName;
+    private TextService $textService;
     public function __construct(string $baseRoute, string $fileName)
     {
         $this->baseRoute = $baseRoute;
         $this->fileName = $fileName;
+        $this->textService = new TextService();
         $this->makeFolder($baseRoute);
     }
     public function readFile(): string
@@ -24,7 +28,7 @@ class FileService
             $this->writeToFile($newData);
         else {
             $dataFromFile = $this->readFile();
-            if (!$this->checkIfSubstringExists($dataFromFile, $newData))
+            if (!$this->textService->checkIfSubstringExists($dataFromFile, $newData))
                 $this->writeToFile($newData);
         }
     }
@@ -34,15 +38,6 @@ class FileService
         $completeRoute = $this->baseRoute . $this->fileName;
         $dataToSave = $data . ";";
         file_put_contents($completeRoute, $dataToSave, FILE_APPEND | LOCK_EX);
-    }
-    private function checkIfSubstringExists(string $data, string $substring): bool
-    {
-        $dataIncludeSubstring = false;
-        $arrayOfData = explode(";", $data);
-        for ($i = 0; $i < sizeof($arrayOfData); $i++)
-            if ($arrayOfData[$i] == $substring)
-                $dataIncludeSubstring = true;
-        return $dataIncludeSubstring;
     }
     private function makeFolder(string $folderName): void
     {
