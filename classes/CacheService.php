@@ -10,12 +10,12 @@ class CacheService
     public function __construct()
     {
         $this->cacheFileName = "cacheData.txt";
-        $this->cacheFileService = new FileService("../files/", $this->cacheFileName);
+        $this->cacheFileService = new FileService("../files/", $this->cacheFileName, false);
         $this->textService = new TextService();
     }
     public function saveToCache(int $id): void
     {
-        $this->cacheFileService->updateFile($id);
+        $this->cacheFileService->updateFile($id . ";");
     }
     public function loadProductFromCache(int $id): string
     {

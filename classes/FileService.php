@@ -5,17 +5,22 @@ class FileService
 {
     private string $baseRoute;
     private string $fileName;
+    private bool $writeToBlankFile;
     private TextService $textService;
-    public function __construct(string $baseRoute, string $fileName)
+    public function __construct(string $baseRoute, string $fileName, $writeToBlankFile)
     {
         $this->baseRoute = $baseRoute;
         $this->fileName = $fileName;
+        $this->writeToBlankFile = $writeToBlankFile;
         $this->textService = new TextService();
-        $this->makeFolder($baseRoute);
+        $this->makeFolder();
     }
     public function readFile(): string
     {
-        $result = file_get_contents($this->baseRoute . $this->fileName);
+        $filePath = $this->baseRoute . $this->fileName;
+        if (!file_exists($filePath))
+            return "";
+        $result = file_get_contents($filePath);
         if ($result)
             return $result;
         else
@@ -36,12 +41,14 @@ class FileService
     private function writeToFile(string $data): void
     {
         $completeRoute = $this->baseRoute . $this->fileName;
-        $dataToSave = $data . ";";
-        file_put_contents($completeRoute, $dataToSave, FILE_APPEND | LOCK_EX);
+        if ($this->writeToBlankFile === true)
+            file_put_contents($completeRoute, $data, LOCK_EX);
+        else
+            file_put_contents($completeRoute, $data, FILE_APPEND | LOCK_EX);
     }
-    private function makeFolder(string $folderName): void
+    private function makeFolder(): void
     {
-        if (!file_exists($folderName))
-            mkdir($folderName);
+        if (!file_exists($this->baseRoute))
+            mkdir($this->baseRoute);
     }
 }
