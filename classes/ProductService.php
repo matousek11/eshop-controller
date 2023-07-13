@@ -12,13 +12,15 @@ class ProductService
     {
         $this->cacheService = new CacheService();
         $this->marketingService = new MarketingService();
+        $this->databaseService = new DatabaseService();
     }
-    public function getProduct(int $id): void
+    public function getProduct(int $id): Product
     {
         $result = $this->cacheService->loadProductFromCache($id);
         if (strlen($result) === 0) {
             $result = $this->databaseService->getProduct($id, false);
         }
         $this->marketingService->incrementProduct($id);
+        return $result;
     }
 }

@@ -11,7 +11,7 @@ class DatabaseService
         $this->mySQLAdapter = new MySQLAdapter();
         $this->elasticSearchAdapter = new ElasticSearchAdapter();
     }
-    public function getProduct(int $id, bool $backup): string
+    public function getProduct(int $id, bool $backup): Product
     {
         if ($backup)
             return $this->mySQLAdapter->findProduct($id);

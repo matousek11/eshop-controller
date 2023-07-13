@@ -2,15 +2,11 @@
 require_once('../classes/ProductService.php');
 class ProductController
 {
-    public function detail($id)
+    public function detail($id): string
     {
         $productService = new ProductService();
-        $id = $_GET['id'];
-        if ($id >= 0 && is_int($id))
-            $productService->getProduct($id);
-        else if (is_int($id) === false)
-            echo ("Id is not int, enter int.");
-        else
-            echo ("Enter id equal or bigger than 0.");
+        $product = $productService->getProduct($id);
+        $jsonData = json_encode($product);
+        return $jsonData;
     }
 }

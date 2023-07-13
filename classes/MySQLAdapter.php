@@ -1,6 +1,7 @@
 <?php
 require_once("ProductsGenerator.php");
 require_once("../models/Product.php");
+require_once("../interfaces/DatabaseInterface.php");
 
 class MySQLAdapter implements IMySQLDriver
 {
@@ -9,7 +10,7 @@ class MySQLAdapter implements IMySQLDriver
     {
         $this->productsGenerator = new ProductsGenerator();
     }
-    public function findProduct(int $id): Product
+    public function findProduct($id): Product
     {
         return $this->productsGenerator->generateProducts($id);
     }

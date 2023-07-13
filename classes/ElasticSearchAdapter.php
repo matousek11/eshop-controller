@@ -8,7 +8,7 @@ class ElasticSearchAdapter implements IElasticSearchDriver
     {
         $this->productsGenerator = new ProductsGenerator();
     }
-    public function findById(int $id): Product
+    public function findById($id): Product
     {
         return $this->productsGenerator->generateProducts($id);
     }
