@@ -15,12 +15,16 @@ Id of product is checked if it is saved in cache, then product is returned in Js
 ## How to run Eshop controller
 
 1. Install `Docker`.
-2. Run `make build-image` in cmd.
-3. Run `make run-container`.
+2. Run command `make build-image` in cmd.
+3. Run command `make run-container`.
 4. Open browser with url `localhost:3000/api/product?id=1`.
+
+## How to stop container
+
+1. Run command `make stop-container`.
 
 ## Switch between ElasticSearch and MySql
 
 1. Open `ProductService.php`.
 2. Find method `getProduct($id, false)` on class `DatabaseService`.
-3. Change false on method `getProduct($id, false)` to true to switch on MySql.
+3. Change boolean false on method `getProduct($id, false)` to true to switch on MySql.
