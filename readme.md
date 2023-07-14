@@ -6,6 +6,8 @@ Eshop controller shows product based on id in url. Look into cache for product, 
 
 - [How it works](#how-it-works)
 - [How to run Eshop controller](#how-to-run-eshop-controller)
+- [How to stop container](#how-to-stop-container)
+- [How to consume API](#how-to-consume-api)
 - [Switch between ElasticSearch and MySql](#switch-between-elasticsearch-and-mysql)
 
 ## How it works
@@ -16,12 +18,17 @@ Id of product is checked if it is saved in cache, then product is returned in Js
 
 1. Install `Docker`.
 2. Run command `make build-image` in cmd.
-3. Run command `make run-container`.
-4. Open browser with url `localhost:8080/api/product?id=1`.
+3. - On first start up use command `make first-run-container`.
+   - Otherwise use command `make start-existing-container`.
+4. Open browser with url `localhost:8080/api/product?id=[id]`.
 
 ## How to stop container
 
 1. Run command `make stop-container`.
+
+## How to consume API
+
+Go on url `/api/product.php?id=[id]`. Response looks like: `{"id": 1, nameOfProduct: "Watch", "price": 15000}`. If error occurs you will see `{"error": "Error"}`.
 
 ## Switch between ElasticSearch and MySql
 
