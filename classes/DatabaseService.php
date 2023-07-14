@@ -13,9 +13,9 @@ class DatabaseService
     }
     public function getProduct(int $id, bool $backup): Product
     {
-        if ($backup)
-            return $this->mySQLAdapter->findProduct($id);
-        else
+        if (!$backup)
             return $this->elasticSearchAdapter->findById($id);
+        else
+            return $this->mySQLAdapter->findProduct($id);
     }
 }

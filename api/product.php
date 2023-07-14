@@ -3,6 +3,7 @@ require_once("../controllers/ProductController.php");
 
 $productController = new ProductController();
 header("Content-Type: application/json");
+
 $jsonData = json_encode(array("error" => "Error"));
 $id = $_GET['id'];
 if ($id >= 0)

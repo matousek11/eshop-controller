@@ -38,5 +38,4 @@ class MarketingService
         $dataToSave = $oldData . $newData . ";";
         $this->marketingFileService->updateFile($dataToSave);
     }
-
 }
