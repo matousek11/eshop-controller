@@ -19,6 +19,10 @@ class ProductService
         $result = $this->cacheService->loadProductFromCache($id);
         if (strlen($result) === 0) {
             $result = $this->databaseService->getProduct($id, false);
+            $this->cacheService->saveToCache($result);
+        } else {
+            $dataOfArray = explode(",", $result);
+            $result = new Product($dataOfArray[0], $dataOfArray[1], $dataOfArray[2]);
         }
         $this->marketingService->incrementProduct($id);
         return $result;

@@ -1,6 +1,7 @@
 <?php
 require_once("FileService.php");
 require_once("TextService.php");
+require_once("../models/Product.php");
 
 class CacheService
 {
@@ -13,9 +14,10 @@ class CacheService
         $this->cacheFileService = new FileService("../files/", $this->cacheFileName, false);
         $this->textService = new TextService();
     }
-    public function saveToCache(int $id): void
+    public function saveToCache(Product $product): void
     {
-        $this->cacheFileService->updateFile($id . ";");
+        $productToCache = $product->id . "," . $product->nameOfProduct . "," . $product->price;
+        $this->cacheFileService->updateFile($productToCache . ";");
     }
     public function loadProductFromCache(int $id): string
     {
@@ -23,10 +25,12 @@ class CacheService
         $productIsInCache = $this->textService->checkIfSubstringExists($cache, $id);
         if ($productIsInCache) {
             $cacheArray = explode(";", $cache);
-            $result = array_search($id, $cacheArray);
+            for ($x = 0; $x < sizeof($cacheArray); $x++) {
+                if (str_contains($cacheArray[$x], $id))
+                    $result = $x;
+            }
             return $cacheArray[$result];
         } else {
-            $this->saveToCache($id);
             return "";
         }
     }
