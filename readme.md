@@ -17,7 +17,7 @@ Id of product is checked if it is saved in cache, then product is returned in Js
 1. Install `Docker`.
 2. Run command `make build-image` in cmd.
 3. Run command `make run-container`.
-4. Open browser with url `localhost:3000/api/product?id=1`.
+4. Open browser with url `localhost:8080/api/product?id=1`.
 
 ## How to stop container
 
