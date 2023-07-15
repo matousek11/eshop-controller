@@ -11,7 +11,8 @@ class ProductsGenerator
     }
     public function generateProducts(int $id): Product
     {
-        $pickedProduct = $this->nameOfProductArray[rand(0, $this->numberOfProducts)];
+        $randomNumber = rand(0, $this->numberOfProducts - 1);
+        $pickedProduct = $this->nameOfProductArray[$randomNumber];
         $price = rand(5000, 30000);
         return new Product($id, $pickedProduct, $price);
     }

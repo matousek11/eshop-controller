@@ -1,6 +1,6 @@
 # Eshop controller
 
-Eshop controller shows product based on id in url. Look into cache for product, if not found it looks into database and cache it for next time. Then it increase number of request on current product for marketing purpose and return Json data.
+Eshop controller shows product based on id in url. Look into cache for product, if not found it looks into database and cache it for next time.
 
 ## Table of content
 
@@ -28,7 +28,8 @@ Id of product is checked if it is saved in cache, then product is returned in Js
 
 ## How to consume API
 
-Go on url `/api/product.php?id=[id]`. Response looks like: `{"id": 1, nameOfProduct: "Watch", "price": 15000}`. If error occurs you will see `{"error": "Error"}`.
+- Go on url `/api/product.php?id=[id]`. Response looks like: `{"id": 1, nameOfProduct: "Watch", "price": 15000}`.
+- If error occurs you will see `{"error": "Error"}`.
 
 ## Switch between ElasticSearch and MySql
 
