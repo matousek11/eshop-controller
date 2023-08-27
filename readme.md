@@ -28,7 +28,16 @@ Id of product is checked if it is saved in cache, then product is returned in Js
 
 ## How to consume API
 
+### One Product
+
 - Go on url `/api/product.php?id=[id]`. Response looks like: `{"id": 1, nameOfProduct: "Watch", "price": 15000}`.
+- If error occurs you will see `{"error": "Error"}`.
+
+### Array of products
+
+- Go on url `/api/products.php?starting=[starting]&length=[length]`. Starting varible tells on which id start and length tells how many products from start do you want.
+- If variable starting was 10 and length was 20. It would return Products from id 10 to id 29.
+- Response looks like: `[{"id": 1, nameOfProduct: "Watch", "price": 15000, imageUrl: "/img/watch.jpg"}, {"id": 2, nameOfProduct: "Tv", "price": 16000, imageUrl: "/img/tv.jpg"}]`.
 - If error occurs you will see `{"error": "Error"}`.
 
 ## Switch between ElasticSearch and MySql
