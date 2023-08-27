@@ -16,7 +16,7 @@ class CacheService
     }
     public function saveToCache(Product $product): void
     {
-        $productToCache = $product->id . "," . $product->nameOfProduct . "," . $product->price;
+        $productToCache = $product->id . "," . $product->nameOfProduct . "," . $product->price . "," . $product->imageUrl;
         $this->cacheFileService->updateFile($productToCache . ";");
     }
     public function loadProductFromCache(int $id): string

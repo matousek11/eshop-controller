@@ -22,7 +22,7 @@ class ProductService
             $this->cacheService->saveToCache($result);
         } else {
             $dataOfArray = explode(",", $result);
-            $result = new Product($dataOfArray[0], $dataOfArray[1], $dataOfArray[2]);
+            $result = new Product($dataOfArray[0], $dataOfArray[1], $dataOfArray[2], $dataOfArray[3]);
         }
         $this->marketingService->incrementProduct($id);
         return $result;
